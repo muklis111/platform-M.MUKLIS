@@ -1,344 +1,419 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - muklis</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Custom Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-blue': '#38bdf8', /* Biru neon terang (sky-400) agar kontras di mode gelap */
-                        'sidebar-bg': '#0f172a', /* Slate 900 */
-                        'sidebar-hover': '#1e293b', /* Slate 800 */
-                        'dark-bg': '#020617', /* Latar utama gelap pekat (Slate 950) */
-                        'dark-surface': '#0f172a', /* Latar seksi/bagian sekunder */
-                        'dark-card': '#1e293b' /* Warna kotak/kartu */
-                    },
-                    fontFamily: {
-                        'sans': ['Open Sans', 'sans-serif'],
-                        'heading': ['Raleway', 'sans-serif'],
-                        'nav': ['Poppins', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        /* Typing Effect Cursor Animation */
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-            color: #38bdf8;
-            font-weight: 400;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Mobile Nav Toggle Transition */
-        #sidebar {
-            transition: transform 0.3s ease-in-out;
-            border-right: 1px solid #1e293b;
-        }
-        
-        .nav-link.active {
-            color: #38bdf8;
-        }
-        .nav-link.active i {
-            color: #38bdf8;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Durian Market Indonesia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-dark-bg text-gray-300 antialiased selection:bg-primary-blue selection:text-white">
+<body>
 
-    <!-- Mobile Nav Toggle Button -->
-    <button id="mobile-nav-toggle" class="fixed top-4 right-4 z-[999] bg-primary-blue text-white w-10 h-10 rounded-full flex items-center justify-center text-xl xl:hidden cursor-pointer">
-        <i class="fa-solid fa-bars"></i>
+<!-- STICKY HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🌿</span>
+      <div>
+        <div class="logo-title">Durian Market</div>
+        <div class="logo-sub">Indonesia</div>
+      </div>
+    </div>
+    <div class="header-tagline">COD Tersedia &nbsp;·&nbsp; Pengiriman Cepat &nbsp;·&nbsp; Produk Terpilih</div>
+    <button class="cart-trigger" onclick="toggleCart()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      Keranjang
+      <span class="cart-badge" id="cartBadge">0</span>
     </button>
+  </div>
+</header>
 
-    <!-- Sidebar / Header -->
-    <header id="sidebar" class="fixed top-0 left-0 bottom-0 w-[300px] z-[99] bg-sidebar-bg text-white flex flex-col justify-between overflow-y-auto transform -translate-x-full xl:translate-x-0">
-        
-        <div class="flex flex-col px-6">
-            <!-- Profile Info -->
-            <div class="flex flex-col items-center mt-12 mb-6">
-                <!-- Foto profil telah diganti mengarah ke file lokal muklis. png-->
-                <img src="muklis.png" alt="muklis" class="w-32 h-32 rounded-full border-8 border-sidebar-hover object-cover mb-4">
-                <h1 class="text-2xl font-bold font-heading m-0"><a href="#" class="text-white hover:text-primary-blue transition-colors duration-300">M.MUKLIS</a></h1>
-                
-                <!-- Social Links -->
-                <div class="flex space-x-2 mt-4">
-                    <a href="#" class="bg-sidebar-hover hover:bg-primary-blue text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="bg-sidebar-hover hover:bg-primary-blue text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="bg-sidebar-hover hover:bg-primary-blue text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="bg-sidebar-hover hover:bg-primary-blue text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300"><i class="fa-brands fa-skype"></i></a>
-                    <a href="#" class="bg-sidebar-hover hover:bg-primary-blue text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors duration-300"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
+<!-- HERO BANNER -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌟 Musim Panen Terbaik</div>
+    <h1>Raja Buah<br><span>Langsung ke Tanganmu</span></h1>
+    <p>Durian pilihan berkualitas tinggi, dipanen segar dari kebun terbaik Indonesia. Dijamin lezat atau uang kembali.</p>
+    <a href="#produk" class="hero-cta">Belanja Sekarang</a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-badge-float badge-1">🏅 Premium Grade</div>
+    <div class="hero-badge-float badge-2">📦 Same Day</div>
+    <div class="hero-badge-float badge-3">💯 Terpercaya</div>
+    <div class="hero-emoji">🌿</div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+
+  <!-- PRODUCT SECTION -->
+  <section id="produk">
+    <div class="section-header">
+      <h2>Pilihan Durian</h2>
+      <p>Semua produk segar dan siap kirim</p>
+    </div>
+    <div class="produk-grid">
+
+      <div class="produk-card">
+        <div class="produk-img-wrap">
+          <img src="https://images.pexels.com/photos/34927312/pexels-photo-34927312.jpeg" alt="Durian Musang King" loading="lazy">
+          <span class="grade-badge">🥇 Best Seller</span>
+        </div>
+        <div class="produk-body">
+          <h3>Durian Musang King</h3>
+          <p class="produk-desc">Daging tebal, manis legit dengan aroma harum khas Musang King premium</p>
+          <div class="produk-footer">
+            <div>
+              <div class="harga">Rp150.000<span>/kg</span></div>
+              <div class="stok" id="stok-Musang King"><span class="dot"></span>Stok: 25 buah</div>
             </div>
+            <button class="btn-add" onclick="tambahKeranjang('Musang King',150000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
 
-            <!-- Navigation Menu -->
-            <nav class="mt-4 font-nav">
-                <ul class="flex flex-col space-y-2">
-                    <li>
-                        <a href="#hero" class="nav-link active flex items-center py-3 px-4 text-[#a8a9b4] hover:text-white transition-colors duration-300 group">
-                            <i class="fa-solid fa-house text-xl mr-4 group-hover:text-primary-blue transition-colors duration-300"></i>
-                            <span>Beranda</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about" class="nav-link flex items-center py-3 px-4 text-[#a8a9b4] hover:text-white transition-colors duration-300 group">
-                            <i class="fa-regular fa-user text-xl mr-4 group-hover:text-primary-blue transition-colors duration-300"></i>
-                            <span>Tentang</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#pendidikan" class="nav-link flex items-center py-3 px-4 text-[#a8a9b4] hover:text-white transition-colors duration-300 group">
-                            <i class="fa-solid fa-graduation-cap text-xl mr-4 group-hover:text-primary-blue transition-colors duration-300"></i>
-                            <span>Pendidikan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#services" class="nav-link flex items-center py-3 px-4 text-[#a8a9b4] hover:text-white transition-colors duration-300 group">
-                            <i class="fa-solid fa-server text-xl mr-4 group-hover:text-primary-blue transition-colors duration-300"></i>
-                            <span>Layanan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact" class="nav-link flex items-center py-3 px-4 text-[#a8a9b4] hover:text-white transition-colors duration-300 group">
-                            <i class="fa-regular fa-envelope text-xl mr-4 group-hover:text-primary-blue transition-colors duration-300"></i>
-                            <span>Kontak</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+      <div class="produk-card">
+        <div class="produk-img-wrap">
+          <img src="https://images.pexels.com/photos/35535820/pexels-photo-35535820.jpeg" alt="Durian Montong" loading="lazy">
+          <span class="grade-badge grade-blue">🌟 Populer</span>
+        </div>
+        <div class="produk-body">
+          <h3>Durian Montong</h3>
+          <p class="produk-desc">Biji kecil, daging banyak dan tebal berwarna kuning cerah menggiurkan</p>
+          <div class="produk-footer">
+            <div>
+              <div class="harga">Rp120.000<span>/kg</span></div>
+              <div class="stok" id="stok-Montong"><span class="dot"></span>Stok: 30 buah</div>
+            </div>
+            <button class="btn-add" onclick="tambahKeranjang('Montong',120000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="produk-card">
+        <div class="produk-img-wrap">
+          <img src="https://images.pexels.com/photos/35111183/pexels-photo-35111183.jpeg" alt="Durian Petruk" loading="lazy">
+          <span class="grade-badge grade-green">🇮🇩 Lokal</span>
+        </div>
+        <div class="produk-body">
+          <h3>Durian Petruk</h3>
+          <p class="produk-desc">Varietas asli Jawa Tengah, rasa manis sedikit pahit yang khas dan unik</p>
+          <div class="produk-footer">
+            <div>
+              <div class="harga">Rp100.000<span>/kg</span></div>
+              <div class="stok" id="stok-Petruk"><span class="dot"></span>Stok: 18 buah</div>
+            </div>
+            <button class="btn-add" onclick="tambahKeranjang('Petruk',100000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="produk-card">
+        <div class="produk-img-wrap">
+          <img src="https://images.pexels.com/photos/31905808/pexels-photo-31905808.jpeg" alt="Durian Bawor" loading="lazy">
+          <span class="grade-badge grade-purple">👑 Premium</span>
+        </div>
+        <div class="produk-body">
+          <h3>Durian Bawor</h3>
+          <p class="produk-desc">Durian super jumbo dari Banyumas, ukuran besar dengan isi yang melimpah</p>
+          <div class="produk-footer">
+            <div>
+              <div class="harga">Rp130.000<span>/kg</span></div>
+              <div class="stok" id="stok-Bawor"><span class="dot"></span>Stok: 20 buah</div>
+            </div>
+            <button class="btn-add" onclick="tambahKeranjang('Bawor',130000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="produk-card">
+        <div class="produk-img-wrap">
+          <img src="https://images.pexels.com/photos/3888735/pexels-photo-3888735.jpeg" alt="Durian Istimewa" loading="lazy">
+          <span class="grade-badge">🎁 Edisi Spesial</span>
+        </div>
+        <div class="produk-body">
+          <h3>Durian Istimewa</h3>
+          <p class="produk-desc">Paket curated pilihan terbaik kami, cocok untuk hadiah atau acara spesial</p>
+          <div class="produk-footer">
+            <div>
+              <div class="harga">Rp140.000<span>/kg</span></div>
+              <div class="stok" id="stok-Istimewa"><span class="dot"></span>Stok: 15 buah</div>
+            </div>
+            <button class="btn-add" onclick="tambahKeranjang('Istimewa',140000)">+ Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHECKOUT FORM -->
+  <section class="checkout-section">
+    <div class="section-header">
+      <h2>Informasi Pengiriman</h2>
+      <p>Isi data penerima dan pilih metode pembayaran</p>
+    </div>
+
+    <div class="checkout-grid">
+      <div class="form-card">
+        <div class="form-group">
+          <label>Nama Penerima</label>
+          <input type="text" id="namaPenerima" placeholder="Masukkan nama lengkap">
+        </div>
+        <div class="form-group">
+          <label>Alamat Lengkap</label>
+          <textarea rows="3" id="alamat" placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Metode Pengiriman & Pembayaran</label>
+          <select id="metodePembayaran">
+            <option>COD (Bayar di Tempat)</option>
+            <option>Transfer Bank - BCA</option>
+            <option>Transfer Bank - BRI</option>
+            <option>Transfer Bank - Mandiri</option>
+            <option>Transfer Bank - BNI</option>
+            <option>E-Wallet - DANA</option>
+            <option>E-Wallet - OVO</option>
+            <option>E-Wallet - GoPay</option>
+            <option>E-Wallet - ShopeePay</option>
+            <option>QRIS</option>
+          </select>
         </div>
 
-        <!-- Footer -->
-        <div class="px-6 pb-8 text-center text-[13px] text-[#f4f6fd]">
-            <p class="mb-1">&copy; Copyright <strong><span>Portofolio</span></strong></p>
-            <p class="text-[#a8a9b4]">Didesain dengan <span class="text-primary-blue">Tailwind</span></p>
+        <div class="form-group">
+          <label>Upload Bukti Pembayaran</label>
+          <div class="file-upload-area" id="dropZone">
+            <input type="file" id="buktiPembayaran" accept="image/*,.pdf">
+            <div class="file-upload-inner">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p id="fileStatus">Klik atau seret file ke sini</p>
+              <span>PNG, JPG, PDF hingga 10MB</span>
+            </div>
+          </div>
+          <div id="previewBukti"></div>
         </div>
-    </header>
+      </div>
 
-    <!-- Main Content Area -->
-    <main id="main-content" class="xl:ml-[300px] transition-all duration-300">
-        
-        <!-- Hero Section -->
-        <section id="hero" class="relative w-full h-screen bg-cover bg-center bg-no-repeat bg-fixed flex items-center" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
-            <!-- Dark Overlay for better text visibility -->
-            <div class="absolute inset-0 bg-black/70 xl:bg-transparent xl:bg-gradient-to-r xl:from-[#020617]/90 xl:to-transparent"></div>
-            
-            <div class="relative z-10 w-full px-8 md:px-16 lg:px-24 xl:px-32">
-                <h1 class="text-5xl md:text-7xl font-bold font-heading text-white mb-4 drop-shadow-md">M.MUKLIS</h1>
-                <p class="text-2xl md:text-3xl font-nav text-gray-300 drop-shadow-md">
-                    Saya seorang <span id="typed-text" class="border-b-2 border-primary-blue pb-1 text-white"></span><span class="typed-cursor">|</span>
-                </p>
+      <div class="payment-card">
+        <div class="payment-title">Pilih Metode Pembayaran</div>
+        <div class="payment-grid">
+          <a href="https://www.bca.co.id" target="_blank" class="pay-chip">🏦 BCA</a>
+          <a href="https://bri.co.id" target="_blank" class="pay-chip">🏦 BRI</a>
+          <a href="https://www.bankmandiri.co.id" target="_blank" class="pay-chip">🏦 Mandiri</a>
+          <a href="https://www.bni.co.id" target="_blank" class="pay-chip">🏦 BNI</a>
+          <a href="https://www.dana.id" target="_blank" class="pay-chip">💳 DANA</a>
+          <a href="https://www.ovo.id" target="_blank" class="pay-chip">💳 OVO</a>
+          <a href="https://www.gojek.com/gopay" target="_blank" class="pay-chip">💳 GoPay</a>
+          <a href="https://www.bi.go.id/QRIS" target="_blank" class="pay-chip">📱 QRIS</a>
+        </div>
+
+        <div class="order-status-wrap">
+          <div class="status-label">Status Pesanan</div>
+          <div class="status-row">
+            <div class="status-pill" id="statusPesanan">
+              <span class="status-dot"></span> Diproses
             </div>
-        </section>
+            <button class="btn-status" onclick="ubahStatusPesanan()">Update Status</button>
+          </div>
+          <div class="status-track">
+            <div class="track-step active" id="track-1">📋 Diproses</div>
+            <div class="track-arrow">→</div>
+            <div class="track-step" id="track-2">🚚 Dikirim</div>
+            <div class="track-arrow">→</div>
+            <div class="track-step" id="track-3">✅ Selesai</div>
+          </div>
+        </div>
 
-        <!-- Dummy sections for scrolling -->
-        <section id="about" class="min-h-screen py-16 px-8 md:px-16 lg:px-24 bg-dark-bg">
-            <div class="pb-8">
-                <h2 class="text-3xl font-bold font-heading text-white mb-4 pb-4 relative after:content-[''] after:absolute after:block after:w-12 after:h-1 after:bg-primary-blue after:bottom-0 after:left-0">Tentang</h2>
-                <p class="text-gray-400 leading-relaxed text-lg">Halo, saya muklis. Saat ini saya adalah seorang mahasiswa di Universitas Jabal Ghafur. Saya memiliki antusiasme yang tinggi dalam belajar dan terus mengembangkan kemampuan diri, khususnya di bidang yang saya tekuni.</p>
-            </div>
-        </section>
-        
-        <section id="pendidikan" class="min-h-screen py-16 px-8 md:px-16 lg:px-24 bg-dark-surface border-y border-slate-800">
-             <div class="pb-8">
-                <h2 class="text-3xl font-bold font-heading text-white mb-4 pb-4 relative after:content-[''] after:absolute after:block after:w-12 after:h-1 after:bg-primary-blue after:bottom-0 after:left-0">Pendidikan</h2>
-                
-                <!-- Timeline Pendidikan -->
-                <div class="mt-8 border-l-2 border-primary-blue pl-6 relative">
-                    <!-- SMK -->
-                    <div class="mb-8 relative">
-                        <div class="absolute w-4 h-4 bg-dark-surface border-2 border-primary-blue rounded-full -left-[33px] top-1"></div>
-                        <h3 class="text-xl font-bold text-gray-100">SMK AL FITRI BEUREUNUEN </h3>
-                        <p class="text-primary-blue mt-1 font-medium">Pendidikan Menengah Kejuruan</p>
-                    </div>
-                    
-                    <!-- SMP -->
-                    <div class="mb-8 relative">
-                        <div class="absolute w-4 h-4 bg-dark-surface border-2 border-primary-blue rounded-full -left-[33px] top-1"></div>
-                        <h3 class="text-xl font-bold text-gray-100">MTSN 6 PIDIE </h3>
-                        <p class="text-primary-blue mt-1 font-medium">Pendidikan Menengah Pertama</p>
-                    </div>
-                    
-                    <!-- MIN -->
-                    <div class="relative">
-                        <div class="absolute w-4 h-4 bg-dark-surface border-2 border-primary-blue rounded-full -left-[33px] top-1"></div>
-                        <h3 class="text-xl font-bold text-gray-100">MIN 7 PIDIE</h3>
-                        <p class="text-primary-blue mt-1 font-medium">Pendidikan Dasar</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="wa-card">
+          <div class="wa-icon">💬</div>
+          <div>
+            <div class="wa-title">Hubungi Kami</div>
+            <a href="https://wa.me/6285222373394" target="_blank" class="wa-number">085222373394</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Bagian Layanan -->
-        <section id="services" class="min-h-screen py-16 px-8 md:px-16 lg:px-24 bg-dark-bg">
-            <div class="pb-8">
-                <h2 class="text-3xl font-bold font-heading text-white mb-4 pb-4 relative after:content-[''] after:absolute after:block after:w-12 after:h-1 after:bg-primary-blue after:bottom-0 after:left-0">Layanan</h2>
-                <p class="text-gray-400 leading-relaxed mb-10 text-lg">Berikut adalah beberapa layanan dan keahlian yang dapat saya berikan untuk membantu kebutuhan proyek Anda:</p>
+</main>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Layanan 1 -->
-                    <div class="bg-dark-card border border-slate-700 rounded-xl p-8 shadow-lg hover:border-primary-blue hover:-translate-y-2 hover:shadow-[0_10px_24px_rgba(56,189,248,0.15)] transition-all duration-300 group">
-                        <div class="w-16 h-16 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-2xl mb-6 group-hover:bg-primary-blue group-hover:text-white transition-colors duration-300">
-                            <i class="fa-solid fa-laptop-code"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-100 mb-3">Pengembangan Web</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Membangun website yang responsif, cepat, dan modern sesuai dengan kebutuhan bisnis atau personal menggunakan teknologi terbaru.</p>
-                    </div>
+<!-- FLOATING CART PANEL -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<aside class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3>Keranjang Belanja</h3>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body">
+    <ul id="listKeranjang">
+      <li class="cart-empty">
+        <div>🛒</div>
+        <p>Keranjang masih kosong</p>
+      </li>
+    </ul>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total Belanja</span>
+      <span class="cart-total-value">Rp <span id="totalHarga">0</span></span>
+    </div>
+    <button class="btn-checkout" onclick="checkoutSekarang()">Checkout Sekarang 🛒</button>
+    <a href="https://wa.me/6285222373394?text=Halo%20saya%20ingin%20order%20durian" target="_blank" class="btn-wa">Pesan via WhatsApp</a>
+  </div>
+</aside>
 
-                    <!-- Layanan 2 -->
-                    <div class="bg-dark-card border border-slate-700 rounded-xl p-8 shadow-lg hover:border-primary-blue hover:-translate-y-2 hover:shadow-[0_10px_24px_rgba(56,189,248,0.15)] transition-all duration-300 group">
-                        <div class="w-16 h-16 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-2xl mb-6 group-hover:bg-primary-blue group-hover:text-white transition-colors duration-300">
-                            <i class="fa-solid fa-object-group"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-100 mb-3">Desain UI/UX</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Merancang antarmuka pengguna yang intuitif dan menarik secara visual untuk memberikan pengalaman interaksi terbaik bagi pengguna.</p>
-                    </div>
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
 
-                    <!-- Layanan 3 -->
-                    <div class="bg-dark-card border border-slate-700 rounded-xl p-8 shadow-lg hover:border-primary-blue hover:-translate-y-2 hover:shadow-[0_10px_24px_rgba(56,189,248,0.15)] transition-all duration-300 group">
-                        <div class="w-16 h-16 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-2xl mb-6 group-hover:bg-primary-blue group-hover:text-white transition-colors duration-300">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-100 mb-3">Dukungan IT</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed">Memberikan solusi, optimasi, dan pemeliharaan untuk sistem komputer maupun jaringan agar selalu berjalan secara optimal.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">🌿 Durian Market Indonesia</div>
+    <p>Produk segar langsung dari kebun terbaik Indonesia · COD Tersedia · Pengiriman ke seluruh wilayah</p>
+    <p style="margin-top:8px;opacity:0.5;font-size:12px;">Foto produk dari <a href="https://www.pexels.com" target="_blank" style="color:inherit;">Pexels</a></p>
+  </div>
+</footer>
 
-        <!-- Bagian Kontak -->
-        <section id="contact" class="min-h-screen py-16 px-8 md:px-16 lg:px-24 bg-dark-surface border-t border-slate-800">
-            <div class="pb-8">
-                <h2 class="text-3xl font-bold font-heading text-white mb-4 pb-4 relative after:content-[''] after:absolute after:block after:w-12 after:h-1 after:bg-primary-blue after:bottom-0 after:left-0">Kontak</h2>
-                <p class="text-gray-400 leading-relaxed mb-8">Silakan hubungi saya untuk diskusi atau kerja sama melalui kontak di bawah ini:</p>
+<script>
+let keranjang = [];
+let stokProduk = {'Musang King':25,'Montong':30,'Petruk':18,'Bawor':20,'Istimewa':15};
+let statusIndex = 0;
+const statusList = ['Diproses','Dikirim','Selesai'];
 
-                <div class="flex flex-col space-y-6 max-w-2xl">
-                    <!-- Kotak Email -->
-                    <div class="flex items-center p-6 bg-dark-card border border-slate-700 rounded-lg shadow-lg hover:border-primary-blue hover:shadow-[0_0_20px_rgba(56,189,248,0.2)] transition-all duration-300">
-                        <div class="w-12 h-12 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-xl mr-6 shrink-0">
-                            <i class="fa-regular fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-gray-100 mb-1">Email</h4>
-                            <p class="text-gray-400"><a href="mailto:mukhlismukklis@gmail.com" class="hover:text-primary-blue transition-colors"> mukhlismukklis@gmail.com</a></p>
-           
-                        </div>
-                    </div>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
 
-                    <!-- Kotak WhatsApp -->
-                    <div class="flex items-center p-6 bg-dark-card border border-slate-700 rounded-lg shadow-lg hover:border-primary-blue hover:shadow-[0_0_20px_rgba(56,189,248,0.2)] transition-all duration-300">
-                        <div class="w-12 h-12 bg-primary-blue/10 rounded-full flex items-center justify-center text-primary-blue text-xl mr-6 shrink-0">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold text-gray-100 mb-1">WhatsApp</h4>
-                            <!-- Format nomor 62 untuk API wa.me -->
-                            <p class="text-gray-400"><a href="https://wa.me/08522373394" target="_blank" rel="noopener noreferrer" class="hover:text-primary-blue transition-colors">085222373394</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+function toggleCart() {
+  document.getElementById('cartPanel').classList.toggle('open');
+  document.getElementById('cartOverlay').classList.toggle('show');
+}
 
-    </main>
+function tambahKeranjang(nama, harga) {
+  if (stokProduk[nama] <= 0) { showToast('⚠️ Stok habis!'); return; }
+  const existing = keranjang.find(i => i.nama === nama);
+  if (existing) {
+    if (existing.jumlah >= stokProduk[nama]) { showToast('⚠️ Stok tidak mencukupi'); return; }
+    existing.jumlah++;
+  } else {
+    keranjang.push({nama, harga, jumlah: 1});
+  }
+  tampilkanKeranjang();
+  showToast(`✅ ${nama} ditambahkan ke keranjang`);
+}
 
-    <!-- Custom Scripts -->
-    <script>
-        // Typing Effect Logic
-        const textsToType = ["Desainer", "Pengembang Web", "Pekerja Lepas", "Fotografer"];
-        const typingSpeed = 100; // ms per character
-        const erasingSpeed = 50; // ms per character
-        const delayBetweenTexts = 2000; // ms
-        
-        const typedTextElement = document.getElementById('typed-text');
-        let textIndex = 0;
-        let charIndex = 0;
-        let isTyping = true;
+function ubahJumlah(index, delta) {
+  const item = keranjang[index];
+  if (!item) return;
+  if (delta > 0 && item.jumlah >= stokProduk[item.nama]) return;
+  item.jumlah += delta;
+  if (item.jumlah <= 0) keranjang.splice(index, 1);
+  tampilkanKeranjang();
+}
 
-        function typeEffect() {
-            const currentText = textsToType[textIndex];
-            
-            if (isTyping) {
-                // Typing forward
-                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-                
-                if (charIndex === currentText.length) {
-                    isTyping = false;
-                    setTimeout(typeEffect, delayBetweenTexts);
-                } else {
-                    setTimeout(typeEffect, typingSpeed);
-                }
-            } else {
-                // Erasing backward
-                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-                
-                if (charIndex === 0) {
-                    isTyping = true;
-                    textIndex = (textIndex + 1) % textsToType.length;
-                    setTimeout(typeEffect, typingSpeed);
-                } else {
-                    setTimeout(typeEffect, erasingSpeed);
-                }
-            }
-        }
+function hapusItem(index) {
+  const nama = keranjang[index]?.nama;
+  keranjang.splice(index, 1);
+  tampilkanKeranjang();
+  if (nama) showToast(`🗑️ ${nama} dihapus dari keranjang`);
+}
 
-        // Start typing effect
-        setTimeout(typeEffect, 1000);
+function tampilkanKeranjang() {
+  const list = document.getElementById('listKeranjang');
+  const totalEl = document.getElementById('totalHarga');
+  const badge = document.getElementById('cartBadge');
+  list.innerHTML = '';
+  let total = 0;
+  let totalItem = 0;
 
-        // Mobile Nav Toggle Logic
-        const toggleBtn = document.getElementById('mobile-nav-toggle');
-        const sidebar = document.getElementById('sidebar');
-        const toggleIcon = toggleBtn.querySelector('i');
+  if (keranjang.length === 0) {
+    list.innerHTML = '<li class="cart-empty"><div>🛒</div><p>Keranjang masih kosong</p></li>';
+  } else {
+    keranjang.forEach((item, index) => {
+      total += item.harga * item.jumlah;
+      totalItem += item.jumlah;
+      const li = document.createElement('li');
+      li.className = 'cart-item';
+      li.innerHTML = `
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.nama}</div>
+          <div class="cart-item-price">Rp ${item.harga.toLocaleString('id-ID')}/kg</div>
+        </div>
+        <div class="cart-item-controls">
+          <button class="qty-btn" onclick="ubahJumlah(${index},-1)">−</button>
+          <span class="qty-val">${item.jumlah}</span>
+          <button class="qty-btn" onclick="ubahJumlah(${index},1)">+</button>
+          <button class="del-btn" onclick="hapusItem(${index})">🗑</button>
+        </div>
+        <div class="cart-item-subtotal">Rp ${(item.harga*item.jumlah).toLocaleString('id-ID')}</div>
+      `;
+      list.appendChild(li);
+    });
+  }
+  totalEl.textContent = total.toLocaleString('id-ID');
+  badge.textContent = totalItem;
+  badge.style.display = totalItem > 0 ? 'flex' : 'none';
+}
 
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('-translate-x-full');
-            if(sidebar.classList.contains('-translate-x-full')) {
-                toggleIcon.classList.remove('fa-xmark');
-                toggleIcon.classList.add('fa-bars');
-            } else {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-xmark');
-            }
-        });
+function ubahStatusPesanan() {
+  statusIndex = (statusIndex + 1) % 3;
+  const labels = ['Diproses','Dikirim','Selesai'];
+  const icons = ['📋','🚚','✅'];
+  document.getElementById('statusPesanan').innerHTML = `<span class="status-dot"></span> ${icons[statusIndex]} ${labels[statusIndex]}`;
+  ['track-1','track-2','track-3'].forEach((id,i)=>{
+    document.getElementById(id).classList.toggle('active', i <= statusIndex);
+  });
+}
 
-        // Close mobile nav when clicking a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth < 1280) { // xl breakpoint in tailwind is 1280px
-                    sidebar.classList.add('-translate-x-full');
-                    toggleIcon.classList.remove('fa-xmark');
-                    toggleIcon.classList.add('fa-bars');
-                }
-                
-                // Active state handling
-                navLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
+function checkoutSekarang() {
+  if (keranjang.length === 0) { showToast('⚠️ Keranjang masih kosong!'); return; }
+  keranjang.forEach(item => stokProduk[item.nama] = Math.max(0, stokProduk[item.nama] - item.jumlah));
+  keranjang = [];
+  updateStokTampilan();
+  tampilkanKeranjang();
+  toggleCart();
+  showToast('🎉 Checkout berhasil! Menghubungi WhatsApp...');
+  setTimeout(()=>{
+    window.open('https://wa.me/6285222373394?text=Halo%20saya%20sudah%20checkout%20pesanan%20durian','_blank');
+  }, 1000);
+}
+
+function updateStokTampilan() {
+  Object.entries(stokProduk).forEach(([nama, stok])=>{
+    const el = document.getElementById('stok-'+nama);
+    if (el) {
+      el.innerHTML = `<span class="dot${stok===0?' dot-red':''}"></span>Stok: ${stok} buah`;
+      el.classList.toggle('stok-habis', stok===0);
+    }
+  });
+}
+
+document.getElementById('buktiPembayaran').addEventListener('change', function(){
+  const file = this.files[0];
+  document.getElementById('fileStatus').textContent = file ? '📎 ' + file.name : 'Klik atau seret file ke sini';
+  const preview = document.getElementById('previewBukti');
+  preview.innerHTML = '';
+  if (file && file.type.startsWith('image/')) {
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.className = 'preview-img';
+    preview.appendChild(img);
+  }
+});
+
+// Smooth scroll for hero CTA
+document.querySelector('.hero-cta').addEventListener('click', function(e){
+  e.preventDefault();
+  document.getElementById('produk').scrollIntoView({behavior:'smooth'});
+});
+
+tampilkanKeranjang();
+updateStokTampilan();
+</script>
 </body>
 </html>
